@@ -1,0 +1,13 @@
+{
+    "request": {
+      "method": "GET",
+      "urlPath": "/api/users/100"
+    },
+    "response": {
+      "status": 200,
+      "body": "{\"id\": 100, \"firstName\": \"John\", \"lastName\": \"Doe\"}",
+      "headers": {
+        "Content-Type": "application/json"
+      }
+    }
+  }

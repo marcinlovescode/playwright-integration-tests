@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:9.0.1
+    container_name: mysql_container
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: sa
+      MYSQL_DATABASE: my_database        
+      MYSQL_USER: sa                  
+      MYSQL_PASSWORD: sa      
+    ports:
+      - "3306:3306"                             
+    volumes:
+      - mysql_data:/var/lib/mysql                
+      - ./sql:/docker-entrypoint-initdb.d
+  
+  wiremock:
+    image: wiremock/wiremock:latest
+    container_name: wiremock
+    restart: always
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./wiremock/mappings:/home/wiremock/mappings
+      - ./wiremock/__files:/home/wiremock/__files
+    environment:
+      - WIREMOCK_PORT=8080
+      - WIREMOCK_VERBOSE=true
+    command: ["--verbose"]
+
+volumes:
+  mysql_data:
+    driver: local

@@ -1,0 +1,21 @@
+{
+    "request": {
+      "method": "POST",
+      "urlPath": "/api/messages",
+      "bodyPatterns": [
+        {
+          "matchesJsonPath": "$.userId"
+        },
+        {
+          "matchesJsonPath": "$.message"
+        }
+      ]
+    },
+    "response": {
+      "status": 201,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "transformers": ["response-template"]
+    }
+  }

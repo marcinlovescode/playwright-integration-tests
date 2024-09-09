@@ -1,0 +1,9 @@
+curl --location 'localhost:8080/__admin/requests/count' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "method": "POST",
+    "url": "/api/messages",
+    "bodyPatterns": [
+          {"matchesJsonPath" : "$[?(@.userId == '\''1'\'')]"}
+    ]
+}'
